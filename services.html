@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Services — My Demo Website</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    .gs-back-link {
+      display: inline-block;
+      margin: 24px 0 0 24px;
+      font-family: 'Inter', -apple-system, sans-serif;
+      font-size: 14px;
+      color: #7d8590;
+      text-decoration: none;
+    }
+    .gs-back-link:hover { color: #e8a33d; }
+
+    .gig-showcase {
+      --bg: #14171c;
+      --panel: #1c2128;
+      --panel-border: #2a3038;
+      --amber: #e8a33d;
+      --white: #e8e6e2;
+      --muted: #7d8590;
+      --green: #5fb87a;
+      background: var(--bg);
+      color: var(--white);
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      padding: 56px 24px 80px;
+    }
+    .gig-showcase, .gig-showcase * { box-sizing: border-box; }
+    .gig-showcase .gs-inner { max-width: 1100px; margin: 0 auto; }
+
+    .gig-showcase .gs-hero { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center; }
+    @media (max-width: 800px) { .gig-showcase .gs-hero { grid-template-columns: 1fr; } }
+
+    .gig-showcase .gs-eyebrow {
+      font-family: 'JetBrains Mono', 'SFMono-Regular', Consolas, monospace;
+      color: var(--amber); letter-spacing: 0.15em; text-transform: uppercase;
+      font-size: 13px; font-weight: 600; margin: 0 0 16px;
+    }
+    .gig-showcase .gs-headline { font-family: 'Space Grotesk', sans-serif; font-size: 48px; font-weight: 700; line-height: 1.15; margin: 0 0 16px; }
+    .gig-showcase .gs-accent { color: var(--amber); }
+    .gig-showcase .gs-sub { color: var(--muted); font-size: 18px; line-height: 1.5; margin: 0 0 24px; max-width: 440px; }
+    .gig-showcase .gs-tags { display: flex; flex-wrap: wrap; gap: 10px; margin: 0 0 32px; padding: 0; list-style: none; }
+    .gig-showcase .gs-tags span {
+      font-family: 'JetBrains Mono', monospace; font-size: 13px; font-weight: 600;
+      border: 1.5px solid var(--amber); color: var(--white); border-radius: 20px; padding: 6px 14px;
+    }
+    .gig-showcase .gs-cta {
+      display: inline-block; font-family: 'Space Grotesk', sans-serif; font-weight: 600; font-size: 16px;
+      color: var(--bg); background: var(--amber); padding: 14px 28px; border-radius: 8px;
+      text-decoration: none; transition: transform 0.15s ease, box-shadow 0.15s ease;
+    }
+    .gig-showcase .gs-cta:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(232,163,61,0.25); }
+
+    .gig-showcase .gs-terminal { background: var(--panel); border: 1px solid var(--panel-border); border-radius: 14px; overflow: hidden; }
+    .gig-showcase .gs-term-bar { display: flex; gap: 8px; padding: 16px 20px; border-bottom: 1px solid var(--panel-border); }
+    .gig-showcase .gs-term-bar span { width: 11px; height: 11px; border-radius: 50%; background: #444b56; }
+    .gig-showcase .gs-term-body { padding: 24px 28px 32px; font-family: 'JetBrains Mono', monospace; font-size: 15px; line-height: 1.9; }
+    .gig-showcase .gs-term-body p { margin: 0; color: var(--white); }
+    .gig-showcase .gs-prompt { color: var(--amber); font-weight: 600; margin-right: 6px; }
+    .gig-showcase .gs-ok { color: var(--green); }
+    .gig-showcase .gs-cursor {
+      display: inline-block; width: 9px; height: 18px; background: var(--amber);
+      vertical-align: middle; animation: gs-blink 1s steps(1) infinite;
+    }
+    @keyframes gs-blink { 50% { opacity: 0; } }
+
+    .gig-showcase .gs-tiers { margin-top: 72px; display: flex; align-items: stretch; gap: 24px; }
+    @media (max-width: 800px) {
+      .gig-showcase .gs-tiers { flex-direction: column; }
+      .gig-showcase .gs-arrow { transform: rotate(90deg); margin: 8px auto; }
+    }
+    .gig-showcase .gs-tier {
+      flex: 1; background: var(--panel); border: 1px solid var(--panel-border); border-radius: 14px;
+      padding: 32px 24px; text-align: center; transition: border-color 0.2s ease, transform 0.2s ease;
+    }
+    .gig-showcase .gs-tier:hover { border-color: var(--amber); transform: translateY(-4px); }
+    .gig-showcase .gs-tier-num {
+      display: inline-flex; align-items: center; justify-content: center; width: 44px; height: 44px;
+      border: 2px solid var(--amber); border-radius: 50%; color: var(--amber);
+      font-family: 'JetBrains Mono', monospace; font-weight: 600; margin-bottom: 16px;
+    }
+    .gig-showcase .gs-tier h3 { font-family: 'Space Grotesk', sans-serif; font-size: 22px; margin: 0 0 8px; }
+    .gig-showcase .gs-tier p { color: var(--muted); margin: 0; font-size: 15px; }
+    .gig-showcase .gs-arrow { display: flex; align-items: center; justify-content: center; color: var(--amber); font-size: 24px; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Welcome to My Demo Website</h1>
+    <p>This is a simple website built with GitHub Pages.</p>
+  </header>
+
+  <main>
+    <a href="index.html" class="gs-back-link">&larr; Back to home</a>
+
+    <section class="gig-showcase">
+      <div class="gs-inner">
+
+        <div class="gs-hero">
+          <div class="gs-hero-text">
+            <p class="gs-eyebrow">Linux &middot; Security</p>
+            <h2 class="gs-headline">Fix. Harden. <span class="gs-accent">Audit.</span></h2>
+            <p class="gs-sub">Linux server troubleshooting and security hardening — real fixes, not just band-aids.</p>
+            <div class="gs-tags">
+              <span>SSH</span><span>nftables</span><span>fail2ban</span><span>nmap</span>
+            </div>
+            <a href="#" class="gs-cta">Get a quote on Fiverr &rarr;</a>
+            <!-- ^ swap "#" for your real Fiverr gig URL once it's live -->
+          </div>
+
+          <div class="gs-terminal">
+            <div class="gs-term-bar"><span></span><span></span><span></span></div>
+            <div class="gs-term-body">
+              <p><span class="gs-prompt">$</span>nft list ruleset</p>
+              <p class="gs-ok">&nbsp;&nbsp;policy: drop</p>
+              <p><span class="gs-prompt">$</span>systemctl status fail2ban</p>
+              <p class="gs-ok">&nbsp;&nbsp;&#9679; active (running)</p>
+              <p><span class="gs-prompt">$</span>ssh-keygen -t ed25519</p>
+              <p class="gs-ok">&nbsp;&nbsp;&#10003; key-based auth ready</p>
+              <p><span class="gs-prompt">$</span><span class="gs-cursor"></span></p>
+            </div>
+          </div>
+        </div>
+
+        <div class="gs-tiers">
+          <div class="gs-tier">
+            <div class="gs-tier-num">01</div>
+            <h3>Fix</h3>
+            <p>Diagnose + fix one specific issue</p>
+          </div>
+          <div class="gs-arrow">&rarr;</div>
+          <div class="gs-tier">
+            <div class="gs-tier-num">02</div>
+            <h3>Harden</h3>
+            <p>+ SSH keys, firewall, fail2ban</p>
+          </div>
+          <div class="gs-arrow">&rarr;</div>
+          <div class="gs-tier">
+            <div class="gs-tier-num">03</div>
+            <h3>Audit</h3>
+            <p>+ vulnerability scan &amp; report</p>
+          </div>
+        </div>
+
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2026 My Demo Website</p>
+  </footer>
+</body>
+</html>
